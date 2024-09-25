@@ -4,111 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #333;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-
-}
-.input-group {
-    margin-top: -90vh;
-  display: flex;
-  align-items: center;
-
-
-}
-.pera{
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    position: absolute;
-    margin-top: 50vh;
-
-
-    align-items: center;
-}
-.pera2{
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    position: absolute;
-    margin-top: 300vh;
-
-
-    align-items: center;
-}
-.input {
-  min-height: 45px;
-  max-width: 15vw;
-  padding: 0 1rem;
-  color: #fff;
-  font-size: 15px;
-  border: 1px solid #5e4dcd;
-  border-radius: 6px 0 0 6px;
-  background-color: transparent;
-}
-
-.button--submit {
-  min-height: 50px;
-  padding: .5em 1em;
-  border: none;
-  border-radius: 0 6px 6px 0;
-  background-color: #5e4dcd;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color .3s ease-in-out;
-}
-
-.button--submit:hover {
-  background-color: #5e5dcd;
-}
-
-.input:focus, .input:focus-visible {
-  border-color: #3898EC;
-  outline: none;
-}
-#c,#c2{
-    font-size: 20px;
-    margin-top: 2vh;
-    font-weight: 800;
-    font-style: italic;
-} 
-#d,#d2{
-    font-size: 18px;
-    margin-top: 2vh;
-    font-weight: 800;
-    font-style: italic;
-    background-color: #c3e91b7a;
-    border-radius: 20px;
-} 
-#auth,#auth2{
-    font-size: 28px;
-    margin-top: 2vh;
-    font-weight: 800;
-    font-style: italic;
-    background-color: #ec91077a;
-    border-radius: 20px;
-    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.377);
-}
-.pera h4, .pera h4{
-    font-size: 25px;
-    margin-top: 5vh;
-    font-weight: 700;
-    font-style: italic;
-}
-img{
-    width: 70vw;
-border: transparent transparent;
-}
-    </style>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -133,6 +29,27 @@ border: transparent transparent;
     <P id="d2"></P>
     <img src="" id="e2">
 </div>
-    <script src="/script.js"></script>
+    <script>
+            // Fetch data from News API when search button is clicked
+            document.getElementById("go").addEventListener("click", function(){
+    var city= document.getElementById("search").value;
+    fetch(" https://newsapi.org/v2/everything?q="+city+"&apiKey=5656a9f405e94de08b65fc90f3a21364")
+    .then(response=>response.json())
+    .then(data=>{
+        document.getElementById("auth").innerHTML = data.articles[1].author;
+        document.getElementById("b").innerHTML = data.articles[1].title;
+        document.getElementById("c").innerHTML = data.articles[1].description;
+        document.getElementById("d").innerHTML = data.articles[1].content;
+        document.getElementById("e").src = data.articles[1].urlToImage;
+
+        document.getElementById("auth2").innerHTML = data.articles[2].author;
+        document.getElementById("b2").innerHTML = data.articles[2].title;
+        document.getElementById("c2").innerHTML = data.articles[2].description;
+        document.getElementById("d2").innerHTML = data.articles[2].content;
+        document.getElementById("e2").src = data.articles[2].urlToImage;
+
+        })
+})
+    </script>
 </body>
 </html>
